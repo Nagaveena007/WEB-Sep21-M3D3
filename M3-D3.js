@@ -29,34 +29,8 @@ const loadImages = () => {
         col.className = "col-md-4";
 
         col.innerHTML = `
-            
-            <div class="card">
-                <img src="${photo.src.medium}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">${photo.photographer}</h5>
-                    <p class="card-text">${photo.photographer_id}€</p>
-                </div>
-            </div>
-            `;
-
-        `
         <div class="card mb-4 shadow-sm">
-<svg
-  class="bd-placeholder-img card-img-top"
-  width="100%"
-  height="225"
-  xmlns="${photo.src.medium}"
-  preserveAspectRatio="xMidYMid slice"
-  focusable="false"
-  role="img"
-  aria-label="Placeholder: Thumbnail"
->
-  <title>Placeholder</title>
-  <rect width="100%" height="100%" fill="#55595c" />
-  <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-    Thumbnail
-  </text>
-</svg>
+<img src="${photo.src.medium}" class="img-fluid squared">
 <div class="card-body">
   <p class="card-text">
   <title>${photo.photographer}</title>
