@@ -36,16 +36,16 @@ const loadImages = () => {
   >
     <div class="btn-group">
       <button
-        type="button"
+        type="button" 
         class="btn btn-sm btn-outline-secondary"
         onclick="showModal(event)"
-        data-bs-toggle="modal" data-bs-target="#exampleModal"
+        data-toggle="modal" data-target="#exampleModal"
       >
         View
       </button>
       <button
-        type="button"
-        class="btn btn-sm btn-outline-secondary"
+        type="button" id="hide" onclick="buttonHide(event)"
+        class="btn btn-sm btn-outline-secondary editbtn"
       >
         Edit
       </button>
@@ -128,21 +128,21 @@ const loadSecondaryImages = () => {
     });
 };
 //  4. When pressed, this button should make the whole card disappear.
-const buttonHide = function () {
-  const hide = document.querySelectorAll("#hidebtn");
-  for (let i = 0; i < body.photos.length - 1; i++) {
-    hide.innerHTML = "";
-  }
+const buttonHide = function (e) {
+  const hide = document.querySelector(".card");
+  hide.remove();
 };
 
 // 3. Replace the **Edit** buttons on the cards with a **Hide** button.
 
-const buttonValue = document.querySelectorAll(".btn-group:last-child");
-for (let i = 0; i < buttonValue.length; i++) {
-  buttonValue.innerHTML = "Hide";
-}
+const buttonValue = document.querySelector(".editbtn");
+buttonValue.innerText = "Hide";
+
 // 5. Replace the **9 mins** string in the cards with the ID of the image
 //extra 4.  When the user clicks on the **view** button inside a card, open that image in a modal
 const showModal = (e) => {
-  const url = e.target.closest(".card").children[0];
+  const url = e.target.closest(".card").children[0].src;
+  const modalBody = document.querySelector(".modal-body");
+  const img = `<img src="${url}" class="img-card w-100">`;
+  modalBody.innerHTML = img;
 };
