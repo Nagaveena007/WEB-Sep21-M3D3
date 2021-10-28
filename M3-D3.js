@@ -15,16 +15,11 @@ const loadImages = () => {
       console.log(body);
       const row = document.querySelector(".album .row");
 
-      console.log(body.photos.length);
       console.log(Boolean(0 < body.photos.length));
-
-      row.innerHTML = "";
+      row.innerHTML = ""; //removing the images from the row by appending ""
 
       for (let i = 0; i < body.photos.length; i++) {
         const photo = body.photos[i];
-
-        // for (const photo of body.photos) {
-
         const col = document.createElement("div");
         col.className = "col-md-4";
 
@@ -43,6 +38,8 @@ const loadImages = () => {
       <button
         type="button"
         class="btn btn-sm btn-outline-secondary"
+        onclick="showModal(event)"
+        data-bs-toggle="modal" data-bs-target="#exampleModal"
       >
         View
       </button>
@@ -111,7 +108,7 @@ const loadSecondaryImages = () => {
         View
       </button>
       <button
-        type="button"
+        type="button" id="hidebtn"
         class="btn btn-sm btn-outline-secondary" onclick="buttonHide()"
       >
         Edit
@@ -125,24 +122,27 @@ const loadSecondaryImages = () => {
 
         row.appendChild(col);
       }
-
-      // 3. Replace the **Edit** buttons on the cards with a **Hide** button.
-
-      const buttonValue = document.querySelectorAll(".btn-group:last-child");
-      for (let i = 0; i < buttonValue.length; i++) {
-        buttonValue.innerHTML = "Hide";
-      }
-
-      //  4. When pressed, this button should make the whole card disappear.
-      const buttonHide = function () {
-        const hide = document.querySelectorAll(".row .col-md-4 .card");
-        for (let i = 0; i < body.photos.length - 1; i++) {
-          hide.innerHTML = "";
-        }
-      };
-      // 5. Replace the **9 mins** string in the cards with the ID of the image
     }) //end of .then
     .catch((error) => {
       console.log(error);
     });
+};
+//  4. When pressed, this button should make the whole card disappear.
+const buttonHide = function () {
+  const hide = document.querySelectorAll("#hidebtn");
+  for (let i = 0; i < body.photos.length - 1; i++) {
+    hide.innerHTML = "";
+  }
+};
+
+// 3. Replace the **Edit** buttons on the cards with a **Hide** button.
+
+const buttonValue = document.querySelectorAll(".btn-group:last-child");
+for (let i = 0; i < buttonValue.length; i++) {
+  buttonValue.innerHTML = "Hide";
+}
+// 5. Replace the **9 mins** string in the cards with the ID of the image
+//extra 4.  When the user clicks on the **view** button inside a card, open that image in a modal
+const showModal = (e) => {
+  const url = e.target.closest(".card").children[0];
 };
